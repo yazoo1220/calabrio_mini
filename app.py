@@ -1,9 +1,7 @@
 from calabrio_py.api import AsyncApiClient
 from calabrio_py.manager import ConfigManager, PeopleManager, PersonAccountsManager
 import os
-from dotenv import load_dotenv
 import asyncio
-from tqdm import tqdm
 import pandas as pd
 import streamlit as st
 
@@ -18,12 +16,11 @@ async def fetch_people_data(base_url, api_token, business_units_to_exclude):
 
 def main():
     st.title("My Streamlit App")
-    
-    if st.button("Run"):
-        base_url = "your_api_base_url"
-        api_token = "your_api_token"
-        business_units_to_exclude = ["BU1", "BU2"]  # Replace with your exclusion list
-        
+    with st.sidebar:
+        base_url = st.input("your_api_base_url")
+        api_token = st.input("your_api_token")
+        business_units_to_exclude = st.input("").split(',')  # Replace with your exclusion list
+    if st.button("Run"):      
         # Use asyncio to run the asynchronous code
         loop = asyncio.get_event_loop()
         people_df = loop.run_until_complete(fetch_people_data(base_url, api_token, business_units_to_exclude))
