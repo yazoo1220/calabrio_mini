@@ -7,6 +7,8 @@ import asyncio
 from tqdm import tqdm
 import pandas as pd
 
+st.title('Calabrio Mini')
+
 # Access the environment variables
 with st.sidebar:
   api_token = st.input("API Token: ")
