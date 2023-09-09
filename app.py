@@ -5,9 +5,9 @@ import asyncio
 import pandas as pd
 import streamlit as st
 
-
 # Import your AsyncApiClient and PeopleManager here
 
+@st.cache(allow_output_mutation=True, suppress_st_warning=True)
 async def fetch_people_data(base_url, api_token, business_units_to_exclude):
     client = AsyncApiClient(base_url, api_token)
     people_mgr = PeopleManager(client)
@@ -20,18 +20,14 @@ def main():
         base_url = st.text_input("your_api_base_url")
         api_token = st.text_input("your_api_token")
         business_units_to_exclude = st.text_input("").split(',')  # Replace with your exclusion list
-    if st.button("Run"):      
-        # Use asyncio to run the asynchronous code
-        loop = asyncio.get_event_loop()
-        people_df = loop.run_until_complete(fetch_people_data(base_url, api_token, business_units_to_exclude))
+    if st.button("Run"):
+        # Run the asynchronous function using await and st.spinner
+        with st.spinner("Fetching data..."):
+            people_df = await fetch_people_data(base_url, api_token, business_units_to_exclude)
 
         st.dataframe(people_df)
 
 if __name__ == "__main__":
-    main()
-
-
-
-
-
-
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(main())
