@@ -17,7 +17,7 @@ async def fetch_people_data(base_url, api_token, business_units_to_exclude):
 def main():
     st.title("My Streamlit App")
     with st.sidebar:
-        base_url = st.taxt_input("your_api_base_url")
+        base_url = st.text_input("your_api_base_url")
         api_token = st.text_input("your_api_token")
         business_units_to_exclude = st.text_input("").split(',')  # Replace with your exclusion list
     if st.button("Run"):      
