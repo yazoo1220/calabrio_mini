@@ -1,5 +1,5 @@
 from calabrio_py.api import AsyncApiClient
-from calabrio_py.manager import ConfigManager, PeopleManager, PersonAccountsManager
+from calabrio_py.manager import ConfigManager, PeopleManager
 import os
 import asyncio
 import pandas as pd
