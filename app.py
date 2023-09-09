@@ -19,7 +19,7 @@ def main():
     with st.sidebar:
         base_url = st.text_input("your_api_base_url")
         api_token = st.text_input("your_api_token")
-        business_units_to_exclude = st.text_input("").split(',')  # Replace with your exclusion list
+        business_units_to_exclude = st.text_input("business units to exclude").split(',')  # Replace with your exclusion list
     if st.button("Run"):
         # Run the asynchronous function using await and st.spinner
         with st.spinner("Fetching data..."):
