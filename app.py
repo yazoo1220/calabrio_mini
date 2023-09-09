@@ -15,7 +15,7 @@ async def fetch_people_data(base_url, api_token, business_units_to_exclude):
     return people_df
 
 def main():
-    st.title("My Streamlit App")
+    st.title("Calabrio Mini")
     with st.sidebar:
         base_url = st.text_input("your_api_base_url")
         api_token = st.text_input("your_api_token")
